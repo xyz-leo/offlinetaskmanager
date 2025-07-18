@@ -3,10 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <title>Offline Task Manager</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     /* --------------------
        Global styles
     -------------------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -22,8 +26,8 @@
     /* Main container wrapper */
     .container {
       max-width: 600px;
-      width: 90vw;
-      max-height: 80vh;
+      width: 95vw;
+      max-height: 100vh;
       background: #1a1a1a;
       padding: 2.5em 3em;
       border-radius: 12px;
@@ -285,23 +289,65 @@
     -------------------- */
     @media (max-width: 480px) {
       .container {
-        padding: 2em 1.8em;
+        padding: 1.5em 1.2em;
+        max-height: none;
       }
+
       h2 {
-        font-size: 2.2rem;
+        font-size: 2.4rem;
+        line-height: 1.3;
       }
+
+      input, textarea {
+        font-size: 1.3rem;
+        padding: 1em;
+        width: 100%;
+      }
+
       button {
+        font-size: 1.2rem;
+        padding: 1em;
         width: 100%;
         text-align: center;
-        padding: 0.8em 0;
       }
+
+      label[for="file-input"],
+      .json-action {
+        font-size: 1.1rem;
+        display: block;
+        margin-top: 1rem;
+        text-align: center;
+      }
+
+      ul#task-list li {
+        padding: 1em;
+      }
+
+      ul#task-list li strong {
+        font-size: 1.3rem;
+      }
+
+      ul#task-list li .desc {
+        font-size: 1.05rem;
+      }
+
+      .delete-btn {
+        font-size: 1.7rem;
+        right: 10px;
+        top: 12px;
+      }
+
       #change-password-btn {
         position: static;
-        margin-left: auto;
-        font-size: 1.4rem;
-        margin-top: -1rem;
-        margin-bottom: 1rem;
         display: inline-block !important;
+        font-size: 1.6rem;
+        margin: -0.5rem 0 1rem auto;
+      }
+
+      footer {
+        font-size: 0.95em;
+        line-height: 1.4;
+        padding-bottom: 1.5rem;
       }
     }
   </style>
@@ -366,27 +412,43 @@
     // --------------------
     // Initialize app on load
     // --------------------
+    let isLoggedIn = false;
+
     function init() {
       const savedPassword = localStorage.getItem(PASSWORD_KEY);
       if (!savedPassword) {
-        const newPassword = prompt("Create a password:");
+        let newPassword = "";
+        do {
+          newPassword = prompt("Create a password (cannot be empty):");
+          if (newPassword === null) break; // User canceled
+          newPassword = newPassword.trim();
+          if (!newPassword) alert("Password cannot be empty.");
+        } while (!newPassword);
+
         if (newPassword) {
           localStorage.setItem(PASSWORD_KEY, newPassword);
+          // Show app and hide login
+          document.getElementById("login").style.display = "none";
           document.getElementById("main-app").style.display = "block";
           document.getElementById("change-password-btn").style.display = "block";
+          renderTasks();
+        } else {
+          // User canceled, show login to try again ou quit
+          document.getElementById("login").style.display = "block";
+          document.getElementById("main-app").style.display = "none";
         }
       } else {
+        // Password exists, show login
         document.getElementById("login").style.display = "block";
+        document.getElementById("main-app").style.display = "none";
       }
     }
 
-    // --------------------
-    // Handle login process
-    // --------------------
     function handleLogin() {
       const input = document.getElementById("password-input").value;
       const saved = localStorage.getItem(PASSWORD_KEY);
       if (input === saved) {
+        isLoggedIn = true;
         document.getElementById("login").style.display = "none";
         const mainApp = document.getElementById("main-app");
         mainApp.style.display = "block";
@@ -405,12 +467,19 @@
       const oldPass = prompt("Enter current password:");
       if (oldPass !== currentPassword) return alert("Incorrect current password.");
 
-      const newPass = prompt("Enter new password:");
-      if (newPass && newPass.trim().length > 0) {
-        localStorage.setItem(PASSWORD_KEY, newPass.trim());
+      let newPass = "";
+      do {
+        newPass = prompt("Enter new password (cannot be empty):");
+        if (newPass === null) break; // canceled
+        newPass = newPass.trim();
+        if (!newPass) alert("New password cannot be empty.");
+      } while (!newPass);
+
+      if (newPass) {
+        localStorage.setItem(PASSWORD_KEY, newPass);
         alert("Password changed successfully.");
       } else {
-        alert("New password cannot be empty.");
+        alert("Password change cancelled.");
       }
     }
 
