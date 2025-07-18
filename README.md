@@ -4,6 +4,10 @@ This is a fully offline, self-contained Task Manager (To-do list) application bu
 
 > Disclaimer: This application is entirely client-side. No encryption or server-side processing is involved. All data is stored in the browser's localStorage. It is recommended for personal, non-sensitive use only.
 
+
+<img width="608" height="816" alt="Task Manager Screenshot" src="https://github.com/user-attachments/assets/6ee8bbd4-00e3-4b52-a6bf-78a5eb2490e9" />
+
+
 ## Features
 
 - Add tasks with a title and optional description
@@ -25,7 +29,7 @@ This is a fully offline, self-contained Task Manager (To-do list) application bu
 ## How to Use
 
 1. Open the `index.html` file in your browser
-2. Set a password on first access (optional but required to proceed)
+2. Set a password on first access (required to proceed)
 3. Add tasks using the form
 4. Use the buttons to export or import `.json` backups
 5. All changes are saved automatically
