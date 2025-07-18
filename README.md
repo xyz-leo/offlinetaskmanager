@@ -54,6 +54,31 @@ Each task in the JSON array has the following structure:
 - All data is stored locally and unencrypted
 - If browser data is cleared, all tasks will be lost unless exported
 
+
+## Why This Project Matters
+The development approach strictly followed the KISS principle, prioritizing simplicity, speed, and ease of use over unnecessary complexity or dependencies.
+
+While this project may appear simple at first glance, its design solves a very real and common problem: the lack of lightweight, truly offline task management tools that require zero setup or installation.
+
+In an era dominated by cloud-based apps, heavy frameworks, and backend dependencies, this project demonstrates that it's still possible — and sometimes preferable — to solve a problem with pure HTML, CSS, and JavaScript. No server, no database, no login — just open the file and use it instantly.
+
+This application reflects a key principle in software engineering:
+
+    Solve the problem in the simplest way possible, without over-engineering.
+
+It also shows attention to:
+
+    User experience: instant access, smooth interactions, no distractions
+
+    Portability: can run on any modern browser, including mobile
+
+    Resilience: data stays on the user's machine, with export/import options
+
+    Practicality: tasks are preserved even offline, and no external services are required
+
+The goal was never to build something complex — it was to build something that works, efficiently and reliably, with zero friction. This project demonstrates thoughtful design, intentional simplicity, and real-world usability — values that matter in real development environments.
+
+
 ## License
 
 This project is free to use and modify for personal or educational purposes.
