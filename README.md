@@ -30,7 +30,7 @@ The primary goal in creating this web application was to build a task manager (t
 
 ## How to Use
 
-1. Open the `index.html` file in your browser
+1. Open the `taskManager.html` file in your browser (If it was downloaded with a .txt extension, simply rename it to .html before opening.)
 2. Set a password on first access (required to proceed)
 3. Add tasks using the form
 4. Use the buttons to export or import `.json` backups
