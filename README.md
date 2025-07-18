@@ -1,8 +1,10 @@
 # Offline Task Manager (HTML + CSS + JS Only)
 
-This is a fully offline, self-contained Task Manager (To-do list) application built with only HTML, CSS, and JavaScript. No server or backend is required — all data is stored in the browser using `localStorage`.
+This is a fully offline, self-contained Task Manager application built with only HTML, CSS, and JavaScript. No server or backend is required — all data is stored in the browser using `localStorage`.
 
 > Disclaimer: This application is entirely client-side. No encryption or server-side processing is involved. All data is stored in the browser's localStorage. It is recommended for personal, non-sensitive use only.
+
+The primary goal in creating this web application was to build a task manager (to-do list) that is simple, lightweight, useful, and practical for everyday use, allowing users to save and import tasks easily without needing to install or configure anything, or run a server. Just opening the .html file in a browser will work — it runs great on both smartphones and desktop devices.
 
 
 <img width="608" height="816" alt="Task Manager Screenshot" src="https://github.com/user-attachments/assets/6ee8bbd4-00e3-4b52-a6bf-78a5eb2490e9" />
