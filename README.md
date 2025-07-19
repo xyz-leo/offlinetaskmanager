@@ -6,9 +6,7 @@ This is a fully offline, self-contained Task Manager application built with only
 
 The primary goal in creating this web application was to build a task manager (to-do list) that is simple, lightweight, useful, and practical for everyday use, allowing users to save and import tasks easily without needing to install or configure anything, or run a server. Just opening the .html file in a browser will work — it runs great on both smartphones and desktop devices.
 
-
-<img width="608" height="816" alt="Task Manager Screenshot" src="https://github.com/user-attachments/assets/6ee8bbd4-00e3-4b52-a6bf-78a5eb2490e9" />
-
+<img width="536" height="762" alt="TaskManager Screenshot" src="https://github.com/user-attachments/assets/bade7089-3c1f-495c-8045-6ddbe2b66ec8" />
 
 ## Features
 
