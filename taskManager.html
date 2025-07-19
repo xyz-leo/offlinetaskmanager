@@ -6,6 +6,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     /* --------------------
+       Color schemes
+    -------------------- */
+    .theme-classic {
+      --title-color: #eee;
+      --bg-color: #121212;
+      --container-bg: #1a1a1a;
+      --text-color: #ddd;
+      --accent-color: #34e1bc;
+    }
+
+    .theme-dark {
+      --title-color: #eee;
+      --bg-color: #1c1c1c;        
+      --container-bg: #2e2e2e;   
+      --text-color: #cccccc;    
+      --accent-color: #589df6; 
+    }
+    
+    .theme-light {
+      --title-color: #1c1c1c;
+      --bg-color: #fef9f4;        
+      --container-bg: #f3e9dc;    
+      --text-color: #222;        
+      --accent-color: #5b4e4e;  
+    }
+
+    .theme-green {
+      --title-color: #eee;
+      --bg-color: #1a3f3f;
+      --container-bg: #164040;
+      --text-color: #c1dbd8;
+      --accent-color: #55bda7;
+    }
+
+    .theme-blue {
+      --title-color: #eee;
+      --bg-color: #1a1e3f;
+      --container-bg: #16203f;
+      --text-color: #a8bad9;
+      --accent-color: #5480d1;
+    }
+
+    .theme-pink {
+      --title-color: #eee;
+      --bg-color: #3f1a2f;
+      --container-bg: #2f1624;
+      --text-color: #d9a8b6;
+      --accent-color: #d1559b;
+    }
+
+    /* --------------------
        Global styles
     -------------------- */
     *, *::before, *::after {
@@ -14,8 +65,8 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #121212;
-      color: #ddd;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       padding: 2.5em 2em;
       display: flex;
       justify-content: center;
@@ -25,16 +76,14 @@
 
     /* Main container wrapper */
     .container {
+      background: var(--container-bg);
       max-width: 600px;
       width: 95vw;
-      max-height: 100vh;
-      background: #1a1a1a;
       padding: 2.5em 3em;
       border-radius: 12px;
       box-shadow: 0 6px 16px rgb(0 0 0 / 0.85);
       display: flex;
       flex-direction: column;
-      justify-content: center;
       gap: 2rem;
       position: relative;
     }
@@ -46,7 +95,7 @@
       font-weight: 900;
       font-size: 2.6rem;
       text-align: center;
-      color: #eee;
+      color: var(--title-color);
       letter-spacing: 1.1px;
       text-shadow: 0 0 6px rgba(255,255,255,0.3); /* soft glow */
       font-family: 'Segoe UI Black', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -58,15 +107,16 @@
        Input and Textarea
     -------------------- */
     input, textarea {
+      border-color: var(--accent-color);
+      background-color: var(--bg-color);
+      color: var(--accent-color);
+      text-shadow: 0 0 4px var(--accent-color);
       width: calc(100% - 3rem);
       margin-left: 0.25rem;
       padding: 0.7em 1.2em;
       font-size: 1.15rem;
       border-radius: 10px;
       border: 1.8px solid #333;
-      background-color: #222;
-      color: #eee;
-      text-shadow: 0 0 3px #3a7f6e;
       font-weight: 600;
       transition: border-color 0.3s ease, box-shadow 0.3s ease, text-shadow 0.3s ease;
       resize: vertical;
@@ -80,7 +130,7 @@
     }
 
     input:focus, textarea:focus {
-      border-color: #4f7f75;
+      border-color: var(--accent-color);
       outline: none;
       box-shadow: 0 0 10px #34e1bcaa;
       text-shadow: 0 0 6px rgba(255,255,255,0.25);
@@ -90,10 +140,10 @@
        Main Buttons
     -------------------- */
     button {
-      background: #3a3a3a;
+      background-color: var(--accent-color);
+      color: #ddd;
       border: none;
       border-radius: 25px;
-      color: #ddd;
       font-weight: 700;
       font-size: 1.1rem;
       padding: 0.55em 1.4em;
@@ -112,28 +162,6 @@
 
     button:active {
       transform: scale(0.95);
-    }
-
-    /* --------------------
-       Change password icon (top-right)
-    -------------------- */
-    #change-password-btn {
-      background: transparent;
-      border: none;
-      color: #7aa892;
-      font-size: 1.3rem;
-      cursor: pointer;
-      position: absolute;
-      right: 12px;
-      top: 12px;
-      padding: 0;
-      user-select: none;
-      transition: color 0.3s ease;
-      display: none; /* only shown after login */
-    }
-
-    #change-password-btn:hover {
-      color: #a3c4b3;
     }
 
     /* --------------------
@@ -160,7 +188,7 @@
     }
 
     ul#task-list li {
-      background: #222;
+      background: var(--bg-color);
       padding: 1.1em 1.5em;
       border-radius: 12px;
       box-shadow: inset 0 0 4px rgb(0 0 0 / 0.7);
@@ -168,7 +196,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      color: #ddd;
+      color: var(--title-color);
       transition: background-color 0.3s ease;
       user-select: none;
     }
@@ -197,7 +225,7 @@
     }
 
     /* --------------------
-       Minimalist delete (X) button
+       Delete (X) button
     -------------------- */
     .delete-btn {
       position: absolute;
@@ -234,10 +262,10 @@
     }
 
     /* --------------------
-       Import JSON label (styled like button)
+       Import JSON label 
     -------------------- */
     label[for="file-input"] {
-      color: #eee;
+      color: var(--title-color);
       font-weight: 700;
       cursor: pointer;
       display: inline-block;
@@ -257,7 +285,7 @@
     }
 
     .json-action {
-      color: #eee;
+      color: var(--title-color);
       cursor: pointer;
       font-weight: 600;
       font-size: 1rem;
@@ -273,6 +301,66 @@
       text-shadow: 0 0 4px #34e1bc88;
     }
 
+    /* Utility button container */
+    #utility-buttons {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    /* Theme + password buttons style */
+    #theme-button,
+    #change-password-btn {
+      border-radius: 40%;
+      background: var(--bg-color);
+      color: white;
+      font-size: 1.4rem;
+      box-shadow: 0 2px 8px #00000099;
+      transition: transform 0.2s ease, background 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    #theme-button:hover,
+    #change-password-btn:hover {
+      transform: scale(1.05);
+      background: #4f7f75;
+    }
+
+    #color-options {
+      display: none;
+      position: absolute;
+      bottom: 60px;
+      right: 0;
+      background: #222;
+      padding: 0.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px #00000088;
+      display: flex;
+      gap: 8px;
+      z-index: 999;
+    }
+
+    .color-circle {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #fff;
+    }
+
+    .color-circle[data-color="classic"] { background: #121212; }
+    .color-circle[data-color="dark"] { background: #121212; }
+    .color-circle[data-color="light"] { background: #eee; }
+    .color-circle[data-color="green"] { background: #1a3f3f; }
+    .color-circle[data-color="blue"] { background: #1a1e3f; }
+    .color-circle[data-color="pink"] { background: #3f1a2f; }
+
+
     /* ------------------
        Warning Footer
     ------------------ */
@@ -280,8 +368,7 @@
       text-align: center;
       font-size: 0.8em;
       opacity: 0.6;
-      padding: 1rem 0;
-      margin-top: auto;
+      padding: 2.5rem 0;
     }
 
     /* --------------------
@@ -289,6 +376,7 @@
     -------------------- */
     @media (max-width: 480px) {
       .container {
+        position: relative;
         padding: 1.5em 1.2em;
         max-height: none;
       }
@@ -335,19 +423,35 @@
         font-size: 1.7rem;
         right: 10px;
         top: 12px;
+        opacity: 1;
+
       }
 
+      #utility-buttons {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        z-index: 10;
+      }
+
+      #theme-button,
       #change-password-btn {
-        position: static;
-        display: inline-block !important;
-        font-size: 1.6rem;
-        margin: -0.5rem 0 1rem auto;
+        font-size: 1.3rem;
+        box-shadow: 0 2px 6px #00000066;
+      }
+
+      #color-options {
+        position: absolute;
+        bottom: 64px;
+        right: 1.5rem;
+        transform: scale(0.95);
       }
 
       footer {
         font-size: 0.95em;
         line-height: 1.4;
-        padding-bottom: 1.5rem;
+        padding-bottom: 4rem;
       }
     }
   </style>
@@ -363,12 +467,6 @@
 
     <!-- Main App UI (Hidden until authenticated) -->
     <div id="main-app" style="display: none;">
-      <button
-        id="change-password-btn"
-        title="Change Password"
-        onclick="changePassword()"
-        aria-label="Change Password"
-      >🔑</button>
 
       <h2>Task Manager</h2>
       <input id="task-title" placeholder="Task title..." autocomplete="off" />
@@ -383,6 +481,27 @@
       <label for="file-input">⬆ Import Tasks</label>
       <input type="file" id="file-input" accept=".json" onchange="importTasks()" />
     </div>
+    
+    <!-- Theme & Password Buttons -->
+    <div id="utility-buttons" style="display: none;">
+      <button id="theme-button" title="Change Theme">🎨</button>
+      <button
+        id="change-password-btn"
+        title="Change Password"
+        onclick="changePassword()"
+        aria-label="Change Password"
+      >🔑</button>
+    </div>
+
+    <div id="color-options" style="display: none;">
+      <div class="color-circle" data-color="classic"></div>
+      <div class="color-circle" data-color="dark"></div>
+      <div class="color-circle" data-color="light"></div>
+      <div class="color-circle" data-color="green"></div>
+      <div class="color-circle" data-color="blue"></div>
+      <div class="color-circle" data-color="pink"></div>
+    </div>
+
     <footer style="text-align: center; font-size: 0.8em; opacity: 0.6; margin-top: 40px;">
   ⚠️ This is a simple offline tool. All data is stored locally in your browser using <code>localStorage</code> with no encryption. Use responsibly.
     </footer>
@@ -430,7 +549,7 @@
           // Show app and hide login
           document.getElementById("login").style.display = "none";
           document.getElementById("main-app").style.display = "block";
-          document.getElementById("change-password-btn").style.display = "block";
+          document.getElementById("utility-buttons").style.display = "flex";
           renderTasks();
         } else {
           // User canceled, show login to try again ou quit
@@ -452,7 +571,7 @@
         document.getElementById("login").style.display = "none";
         const mainApp = document.getElementById("main-app");
         mainApp.style.display = "block";
-        document.getElementById("change-password-btn").style.display = "block";
+        document.getElementById("utility-buttons").style.display = "flex";
         renderTasks();
       } else {
         alert("Incorrect password.");
@@ -603,6 +722,43 @@
       };
       reader.readAsText(file);
     }
+
+    // Theme button click
+    document.getElementById("theme-button").addEventListener("click", () => {
+      const colorOptions = document.getElementById("color-options");
+      colorOptions.style.display =
+        colorOptions.style.display === "flex" ? "none" : "flex";
+    });
+
+
+    // Function to apply theme
+    function applyTheme(color) {
+      // Remove all theme classes
+      document.body.classList.remove("theme-classic", "theme-dark", "theme-light", "theme-green", "theme-blue", "theme-pink");
+
+      // Add the choosen theme class
+      document.body.classList.add(`theme-${color}`);
+
+      // Save in localStorage
+      localStorage.setItem("selectedTheme", color);
+    }
+
+    // Event listeners to the color circles
+    document.querySelectorAll(".color-circle").forEach(circle => {
+      circle.addEventListener("click", () => {
+        const color = circle.getAttribute("data-color");
+        applyTheme(color);
+
+        // Close the selector after choosing a color
+        document.getElementById("color-options").style.display = "none";
+      });
+    });
+
+    // Apply the saved theme when reloading the page
+    window.addEventListener("load", () => {
+      const savedTheme = localStorage.getItem("selectedTheme") || "classic"; // Classic as default theme
+      applyTheme(savedTheme);
+    });
 
     // Initialize app on first load
     init();
